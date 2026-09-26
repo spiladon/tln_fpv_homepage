@@ -4,19 +4,19 @@ import YouTubeCard from "@/components/YouTubeCard";
 
 const videos = [
   {
-    id: "dQw4w9WgXcQ",
-    title: "Latest Video",
-    description: "Replace this with one of your latest YouTube videos.",
+    id: "xAQ1X1VDh-Y&t",
+    title: "Projekteerijate maja indoor fpv",
+    description: "Officially agreed visit to Ravala 8 closed building. Flying fpv on so called film-set",
   },
   {
-    id: "dQw4w9WgXcQ",
-    title: "FPV / RC Adventure",
-    description: "Add another video from your channel.",
+    id: "PNFrA3U9T-s",
+    title: "Taebla kutsekool indoor fpv",
+    description: "Abandoned interesting building with complicated history",
   },
   {
-    id: "dQw4w9WgXcQ",
-    title: "Behind the Scenes",
-    description: "Add your third featured video here.",
+    id: "8wMSm3XrkBQ&t",
+    title: "Linnahall indoor fpv",
+    description: "Was officially agreed to fly inside Linnahall",
   },
 ];
 

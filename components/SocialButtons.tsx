@@ -1,12 +1,12 @@
 const socials = [
   {
     name: "Instagram",
-    url: "https://www.instagram.com/YOUR_USERNAME",
+    url: "https://www.instagram.com/tln_fpv",
     icon: "◎",
   },
   {
     name: "TikTok",
-    url: "https://www.tiktok.com/@YOUR_USERNAME",
+    url: "https://www.tiktok.com/@tln_fpv",
     icon: "♪",
   },
 ];

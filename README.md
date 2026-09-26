@@ -1,4 +1,5 @@
 # Introduction
+
 A responsive Next.js website with:
 
 - Home page
@@ -6,17 +7,15 @@ A responsive Next.js website with:
 - Embedded YouTube videos
 - Instagram + TikTok buttons
 - Contact page
-- Server-side contact form
-- Email delivery through Resend
+- Contact form using Formspree (or StaticForms WIP comparing)
+- GitHub Pages deployment via GitHub Actions
 
 ## Prerequisites
+
 Copy `.env.example` to `.env.local`:
 
-```bash
-cp .env.example .env.local
-```
-
-Then set:
+GitHub Pages hosts static files. It does not run a Next.js server/API route.
+The contact form therefore uses **Formspree** to receive the form submission and forward it to your email.
 
 ```env
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxx
@@ -24,25 +23,33 @@ CONTACT_TO=your-email@example.com
 CONTACT_FROM=Website <website@yourdomain.com>
 ```
 
-`CONTACT_FROM` must use a sender/domain configured in Resend.
-
-## Local setup
 ```bash
 npm install
 ```
 
-### Local run
+### Test locally
+
 ```bash
 npm run dev
 ```
 
-Open:
-```text
-http://localhost:3000
+## Add your content
+
+### Build the static site
+
+```bash
+npm run build
 ```
 
-### Instruction for first setup
-## 3. Add your content
+### Create the contact form
+
+Create an account at Formspree and create a new form.
+
+Create `.env.local`:
+
+```env
+NEXT_PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID
+```
 
 Edit:
 
@@ -52,7 +59,7 @@ Edit:
 
 For YouTube videos, replace each `id` with the YouTube video ID.
 
-For example:
+Example:
 
 ```text
 https://www.youtube.com/watch?v=ABC123
@@ -60,7 +67,58 @@ https://www.youtube.com/watch?v=ABC123
                          video ID
 ```
 
-## 5. Deploy
+### CI
 
-The project can be deployed to Vercel or another Next.js-compatible host.
-Make sure the three environment variables are configured on the hosting platform.
+Next.js will create the static website in:
+
+```text
+out/
+```
+
+### GitHub Pages
+
+Create a GitHub repository and push this project.
+
+In GitHub:
+
+1. Open **Settings → Pages**
+2. Set **Source** to **GitHub Actions**
+3. Add a workflow that builds the Next.js project and deploys the `out/` directory.
+
+For a project repository, if the site URL is:
+
+```text
+https://YOUR_USERNAME.github.io/YOUR_REPOSITORY/
+```
+
+you may also need to configure `basePath` and `assetPrefix` in `next.config.ts`.
+
+If using a custom domain such as:
+
+```text
+https://example.com
+```
+
+you normally do not need a base path.
+
+### Recommended GitHub Actions workflow
+
+Then add the repository secret:
+
+**Settings → Secrets and variables → Actions → New repository secret**
+
+Name:
+
+```text
+NEXT_PUBLIC_FORMSPREE_ENDPOINT
+```
+
+Value:
+
+```text
+https://formspree.io/f/YOUR_FORM_ID
+```
+
+TODO:
+
+* compare Formsfree vs StaticForms

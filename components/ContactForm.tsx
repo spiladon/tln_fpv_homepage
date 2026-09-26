@@ -11,24 +11,29 @@ export default function ContactForm() {
     setStatus("sending");
     setError("");
 
+    const endpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT;
+
+    if (!endpoint) {
+      setStatus("error");
+      setError("Contact form is not configured yet.");
+      return;
+    }
+
     const form = event.currentTarget;
-    const data = new FormData(form);
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(endpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          message: data.get("message"),
-        }),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
 
-      const result = await response.json();
-
       if (!response.ok) {
-        throw new Error(result.error || "Unable to send message.");
+        const result = await response.json().catch(() => null);
+        throw new Error(result?.errors?.[0]?.message || "Unable to send message.");
       }
 
       form.reset();
