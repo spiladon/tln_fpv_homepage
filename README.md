@@ -1,5 +1,4 @@
-# Personal Creator Website
-
+# Introduction
 A responsive Next.js website with:
 
 - Home page
@@ -10,14 +9,7 @@ A responsive Next.js website with:
 - Server-side contact form
 - Email delivery through Resend
 
-## 1. Install
-
-```bash
-npm install
-```
-
-## 2. Configure email
-
+## Prerequisites
 Copy `.env.example` to `.env.local`:
 
 ```bash
@@ -34,6 +26,22 @@ CONTACT_FROM=Website <website@yourdomain.com>
 
 `CONTACT_FROM` must use a sender/domain configured in Resend.
 
+## Local setup
+```bash
+npm install
+```
+
+### Local run
+```bash
+npm run dev
+```
+
+Open:
+```text
+http://localhost:3000
+```
+
+### Instruction for first setup
 ## 3. Add your content
 
 Edit:
@@ -52,20 +60,7 @@ https://www.youtube.com/watch?v=ABC123
                          video ID
 ```
 
-## 4. Run locally
-
-```bash
-npm run dev
-```
-
-Open:
-
-```text
-http://localhost:3000
-```
-
 ## 5. Deploy
 
 The project can be deployed to Vercel or another Next.js-compatible host.
-
 Make sure the three environment variables are configured on the hosting platform.
